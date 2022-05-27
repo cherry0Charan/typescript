@@ -11,13 +11,13 @@ const router=express.Router()
 //books//
 
 
-router.post("/addBook",validations.createBookValidation,BooksApicalls.addBook)
-router.get("/allBooks",BooksApicalls.allBooks)
+router.post("/addBook",verifyJwtToken,validations.createBookValidation,BooksApicalls.addBook)
+router.get("/allBooks",verifyJwtToken,BooksApicalls.allBooks)
 
 
-router.get("/:id",BooksApicalls.getBook)
-router.put("/:id",validations.updateBookValidation,BooksApicalls.updateBook)
-router.delete("/:id",BooksApicalls.deleteBook)
+router.get("/:id",verifyJwtToken,BooksApicalls.getBook)
+router.put("/:id",verifyJwtToken,validations.updateBookValidation,BooksApicalls.updateBook)
+router.delete("/:id",verifyJwtToken,BooksApicalls.deleteBook)
 
 
 export default router

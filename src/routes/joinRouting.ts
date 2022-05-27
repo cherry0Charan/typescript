@@ -1,18 +1,14 @@
 import express, { application } from "express"
 
-import AuthorApicalls from "../controllers/authorControllers"
-
-import validations from "../middleware/validations"
-
 import verifyJwtToken from "../middleware/jwt"
 
 import joinApiCalls from "../controllers/poulate"
 
 const router=express.Router()
 
-router.get("/authorspop",joinApiCalls.getAuthorsWithBooks)
-router.get("/authorslook",joinApiCalls.getAuthorsUsingLookup)
-router.get("/authorsaggre",joinApiCalls.authorsAggre)
+router.get("/authorspop",verifyJwtToken,joinApiCalls.getAuthorsWithBooks)
+router.get("/authorslook",verifyJwtToken,joinApiCalls.getAuthorsUsingLookup)
+router.get("/authorsaggre",verifyJwtToken,joinApiCalls.authorsAggre)
 
 
 export default router

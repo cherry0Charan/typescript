@@ -25,9 +25,11 @@ const verifyJwtToken = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
         const isJwtMatched = yield jsonwebtoken_1.default.verify(jwtToken, "kljfbbvafgvthbbjhfs", (err, payload) => __awaiter(void 0, void 0, void 0, function* () {
             if (err) {
                 res.status(401);
-                res.send("Invalid");
+                res.send("Invalid Jwt token");
             }
             else {
+                req.body.jwtToken = jwtToken;
+                console.log(jwtToken);
                 next();
             }
         }));

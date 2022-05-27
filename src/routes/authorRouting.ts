@@ -12,11 +12,11 @@ const router=express.Router()
 
 //Author//
 
-router.post("/addAuthor",validations.createAuthorValidation,AuthorApicalls.addAuthors)
-router.get("/allAuthors",AuthorApicalls.allAuthors)
+router.post("/addAuthor",validations.createAuthorValidation,verifyJwtToken,AuthorApicalls.addAuthors)
+router.get("/allAuthors",verifyJwtToken,AuthorApicalls.allAuthors)
 router.get("/:id",AuthorApicalls.getAuthor)
-router.put("/:id",validations.updateAuthorValidation,AuthorApicalls.updateAuthor)
-router.delete("/:id",AuthorApicalls.deleteAuthor)
+router.put("/:id",validations.updateAuthorValidation,verifyJwtToken,AuthorApicalls.updateAuthor)
+router.delete("/:id",verifyJwtToken,AuthorApicalls.deleteAuthor)
 
 
 

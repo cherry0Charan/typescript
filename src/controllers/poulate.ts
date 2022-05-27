@@ -21,7 +21,7 @@ class joinApiCalls{
 
     getAuthorsUsingLookup=async (req:Request,res:Response,next:NextFunction)=>{
         try{
-            const authors=await Author.aggregate([{$lookup:{from:"Book",localField:"name",foreignField:"authorName",as :"charan"}}])
+            const authors=await Author.aggregate([{$lookup:{from:"books",localField:"name",foreignField:"authorName",as :"charan"}}])
             res.send(authors).status(200)
         }catch(err){
             res.send(err).status(400)

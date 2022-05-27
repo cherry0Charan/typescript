@@ -28,7 +28,7 @@ class joinApiCalls {
         //using lookup
         this.getAuthorsUsingLookup = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const authors = yield author_1.default.aggregate([{ $lookup: { from: "Book", localField: "name", foreignField: "authorName", as: "charan" } }]);
+                const authors = yield author_1.default.aggregate([{ $lookup: { from: "books", localField: "name", foreignField: "authorName", as: "charan" } }]);
                 res.send(authors).status(200);
             }
             catch (err) {

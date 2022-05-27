@@ -16,8 +16,10 @@ const verifyJwtToken=async (req:Request,res:Response,next:NextFunction)=>{
         const isJwtMatched=await jwt.verify(jwtToken,"kljfbbvafgvthbbjhfs", async (err , payload)=>{
             if(err){
                 res.status(401)
-                res.send("Invalid")
+                res.send("Invalid Jwt token")
             }else{
+                req.body.jwtToken=jwtToken
+                console.log(jwtToken)
                 next()
             }
         })

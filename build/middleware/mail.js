@@ -9,7 +9,7 @@ const mail = (gmail, mess) => {
         service: "gmail",
         auth: {
             user: "ck301878@gmail.com",
-            pass: "mprtjgyspjmvpwub"
+            pass: "qymgmhhwfqbfwcxd"
         }
     });
     const mailOptions = {
