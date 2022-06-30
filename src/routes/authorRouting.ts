@@ -14,7 +14,7 @@ const router=express.Router()
 
 router.post("/addAuthor",validations.createAuthorValidation,verifyJwtToken,AuthorApicalls.addAuthors)
 router.get("/allAuthors",verifyJwtToken,AuthorApicalls.allAuthors)
-router.get("/:id",AuthorApicalls.getAuthor)
+router.get("/getOne/:id",verifyJwtToken,AuthorApicalls.getAuthor)
 router.put("/:id",validations.updateAuthorValidation,verifyJwtToken,AuthorApicalls.updateAuthor)
 router.delete("/:id",verifyJwtToken,AuthorApicalls.deleteAuthor)
 

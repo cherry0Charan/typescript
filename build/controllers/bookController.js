@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const books_1 = __importDefault(require("../models/books"));
-const express_1 = require("express");
 class BooksApicalls {
     constructor() {
         this.addBook = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
@@ -29,7 +28,7 @@ class BooksApicalls {
                 res.send(savedBook).status(200);
             }
             catch (err) {
-                express_1.response.send(err).status(403);
+                res.send(err).status(403);
             }
         });
         this.allBooks = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
@@ -61,7 +60,7 @@ class BooksApicalls {
                 res.send(savedBook).status(200);
             }
             catch (err) {
-                express_1.response.send(err).status(403);
+                res.send(err).status(403);
             }
         });
         this.deleteBook = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
@@ -70,7 +69,7 @@ class BooksApicalls {
                 res.send(deleteBook).status(200);
             }
             catch (err) {
-                express_1.response.send(err).status(403);
+                res.send(err).status(403);
             }
         });
     }

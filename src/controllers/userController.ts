@@ -24,10 +24,15 @@ class UserApicalls{
                 mail:req.body.mail,
                 password:hashedPassword
             }
-            const user=new Users(info)
-            const savedUser=await user.save()
-            res.send(`user created ${savedUser}`).status(200)
-            mail(req.body.mail,"user created")
+        
+            try{
+                mail(req.body.mail,"user created")
+                const user=new Users(info)
+                const savedUser=await user.save()
+                res.send(`user created ${savedUser}`).status(200)
+            }catch(err){
+                res.send(err)
+            }
         }
     }
 
@@ -44,14 +49,42 @@ class UserApicalls{
                 const jwtToken=jwt.sign(payload,"kljfbbvafgvthbbjhfs")
                 res.send({jwtToken}).status(200)
             }else{
-                res.send("passwor is not valid").status(400)
+                res.send("password is not valid").status(400)
             }
         }
     }
 
     getAllusers=async(req:Request,res:Response,next:NextFunction) =>{
-        const users=await Users.find()
-        res.send(users).status(200)
+
+        interface Cond {
+            name:any,
+            mail:any,
+            password:any
+        }
+
+        let condition = <Cond>{};
+
+        const {name,mail,password}=req.query
+
+        if(name!==undefined){
+            condition.name=name
+
+        }
+        if(mail!==undefined){
+            condition.mail=mail
+        }
+        if(password!==undefined){
+            condition.password=password
+        }
+        console.log(condition)
+        try{
+            const result=await Users.findOne(condition)
+            res.send(result).status(200)
+            console.log(result)
+        }catch(err){
+            res.send(err).status(400)
+        }
+        
     }
     
 

@@ -28,7 +28,7 @@ const verifyJwtToken = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
                 res.send("Invalid Jwt token");
             }
             else {
-                req.body.jwtToken = jwtToken;
+                //req.body.jwtToken=jwtToken
                 console.log(jwtToken);
                 next();
             }

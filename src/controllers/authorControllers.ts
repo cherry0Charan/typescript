@@ -16,7 +16,7 @@ class AuthorApicalls{
 
     allAuthors=async (req:Request,res:Response,next:NextFunction)=>{
         try{
-            const Authors= await Author.find()
+            const Authors= await Author.find().sort({name:1}).limit(3)
             res.send(Authors).status(200)
         }catch(err){
             res.send(err).status(403)
@@ -25,11 +25,12 @@ class AuthorApicalls{
 
 
     getAuthor=async (req:Request,res:Response,next:NextFunction)=>{
+
         try{
-            const Authors= await Author.findById({_id:req.params.id})
+            const Authors= await Author.findById(req.params.id)
             res.send(Authors).status(200)
-        }catch(err){
-            res.send(err).status(403)
+        }catch(err:any){
+            res.send(err.stack).status(403)
         }
     }
     

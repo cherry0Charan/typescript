@@ -15,10 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const author_1 = __importDefault(require("../models/author"));
 class joinApiCalls {
     constructor() {
-        //using populatc
+        //using populate
         this.getAuthorsWithBooks = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const authors = yield author_1.default.find().populate("books", "name");
+                //const authors=await Author.find().populate("books")
+                const authors = yield author_1.default.aggregate([{ $match: { name: "శ్రీ శ్రీ" } }]);
+                //const results=await Book.find().populate(authors,{path:"name"})
                 res.send(authors).status(200);
             }
             catch (err) {

@@ -9,7 +9,6 @@ class Validations{
             name:Joi.string().required(),
             mail:Joi.string().email().min(8).max(30).required().trim(),
             password:joiPassword.string().required().alphanum()
-           
         })
 
         try{

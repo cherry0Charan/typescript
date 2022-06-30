@@ -18,7 +18,7 @@ const verifyJwtToken=async (req:Request,res:Response,next:NextFunction)=>{
                 res.status(401)
                 res.send("Invalid Jwt token")
             }else{
-                req.body.jwtToken=jwtToken
+                //req.body.jwtToken=jwtToken
                 console.log(jwtToken)
                 next()
             }

@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+//import  { Request, Response } from "express"
 const mongoose_1 = __importDefault(require("mongoose"));
 const user_routing_1 = __importDefault(require("./routes/user.routing"));
 const joinRouting_1 = __importDefault(require("./routes/joinRouting"));

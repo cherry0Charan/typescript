@@ -1,6 +1,6 @@
 import Book from "../models/books"
 
-import {Request,Response,NextFunction, response} from "express"
+import {Request,Response,NextFunction} from "express"
 
 class BooksApicalls{
 
@@ -16,7 +16,7 @@ class BooksApicalls{
             const savedBook=await book.save()
             res.send(savedBook).status(200)
         }catch(err){
-            response.send(err).status(403)
+            res.send(err).status(403)
         }
     }
 
@@ -50,7 +50,7 @@ class BooksApicalls{
             const savedBook=await Book.findByIdAndUpdate({_id:req.params.id},info)
             res.send(savedBook).status(200)
         }catch(err){
-            response.send(err).status(403)
+            res.send(err).status(403)
         }
     }
 
@@ -61,7 +61,7 @@ class BooksApicalls{
             const deleteBook=await Book.findByIdAndDelete({_id:req.params.id})
             res.send(deleteBook).status(200)
         }catch(err){
-            response.send(err).status(403)
+            res.send(err).status(403)
         }
     }
 

@@ -32,10 +32,15 @@ class UserApicalls {
                     mail: req.body.mail,
                     password: hashedPassword
                 };
-                const user = new users_1.default(info);
-                const savedUser = yield user.save();
-                res.send(`user created ${savedUser}`).status(200);
-                (0, mail_1.default)(req.body.mail, "user created");
+                try {
+                    (0, mail_1.default)(req.body.mail, "user created");
+                    const user = new users_1.default(info);
+                    const savedUser = yield user.save();
+                    res.send(`user created ${savedUser}`).status(200);
+                }
+                catch (err) {
+                    res.send(err);
+                }
             }
         });
         this.login = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
@@ -56,8 +61,26 @@ class UserApicalls {
             }
         });
         this.getAllusers = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            const users = yield users_1.default.find();
-            res.send(users).status(200);
+            let condition = {};
+            const { name, mail, password } = req.query;
+            if (name !== undefined) {
+                condition.name = name;
+            }
+            if (mail !== undefined) {
+                condition.mail = mail;
+            }
+            if (password !== undefined) {
+                condition.password = password;
+            }
+            console.log(condition);
+            try {
+                const result = yield users_1.default.findOne(condition);
+                res.send(result).status(200);
+                console.log(result);
+            }
+            catch (err) {
+                res.send(err).status(400);
+            }
         });
     }
 }
