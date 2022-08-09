@@ -26,7 +26,7 @@ class AuthorApicalls {
         });
         this.allAuthors = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const Authors = yield author_1.default.find().sort({ name: 1 }).limit(3).populate("books");
+                const Authors = yield author_1.default.find().sort({ name: 1 }).limit(3);
                 res.send(Authors).status(200);
             }
             catch (err) {

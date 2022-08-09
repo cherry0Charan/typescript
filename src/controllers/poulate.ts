@@ -11,9 +11,9 @@ class joinApiCalls{
 
     getAuthorsWithBooks=async (req:Request,res:Response,next:NextFunction)=>{
         try{
-            //const authors=await Author.find().populate("books")
-            const authors=await Author.aggregate([{$match:{name:"శ్రీ శ్రీ"}}])
-            //const results=await Book.find().populate(authors,{path:"name"})
+            const authors=await Author.find().populate("books")
+            //const authors=await Author.aggregate([{$match:{name:"శ్రీ శ్రీ"}}])
+            //const results=await Book.find().populate("authors")
             res.send(authors).status(200)
         }catch(err){
             res.send(err).status(400)  

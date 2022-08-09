@@ -10,8 +10,8 @@ const jwt_1 = __importDefault(require("../middleware/jwt"));
 const router = express_1.default.Router();
 //Author//
 router.post("/addAuthor", validations_1.default.createAuthorValidation, jwt_1.default, authorControllers_1.default.addAuthors);
-router.get("/allAuthors", authorControllers_1.default.allAuthors);
-router.get("/getOne/:id", authorControllers_1.default.getAuthor);
+router.get("/allAuthors", jwt_1.default, authorControllers_1.default.allAuthors);
+router.get("/getOne/:id", jwt_1.default, authorControllers_1.default.getAuthor);
 router.put("/:id", validations_1.default.updateAuthorValidation, jwt_1.default, authorControllers_1.default.updateAuthor);
 router.delete("/:id", jwt_1.default, authorControllers_1.default.deleteAuthor);
 exports.default = router;

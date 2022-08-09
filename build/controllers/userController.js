@@ -14,9 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const elasticsearch_1 = __importDefault(require("elasticsearch"));
 const users_1 = __importDefault(require("../models/users"));
 const mail_1 = __importDefault(require("../middleware/mail"));
 require("dotenv").config();
+var client = new elasticsearch_1.default.Client({
+    host: "localhost:9200"
+});
 class UserApicalls {
     constructor() {
         this.addUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
@@ -56,7 +60,7 @@ class UserApicalls {
                     res.send({ jwtToken }).status(200);
                 }
                 else {
-                    res.send("passwor is not valid").status(400);
+                    res.send("password is not valid").status(400);
                 }
             }
         });

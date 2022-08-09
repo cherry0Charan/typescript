@@ -2,13 +2,20 @@ import bcrypt from "bcrypt"
 
 import jwt from "jsonwebtoken"
 
+import elasticsearch from "elasticsearch"
+
 import {Request,Response,NextFunction} from "express"
 
 import Users from "../models/users"
 
 import mail from "../middleware/mail"
 
+
 require("dotenv").config()
+
+var client:any=new elasticsearch.Client({
+   
+})
 
 class UserApicalls{
     addUser=async(req:Request,res:Response,next:NextFunction)=>{
@@ -30,6 +37,7 @@ class UserApicalls{
                 const user=new Users(info)
                 const savedUser=await user.save()
                 res.send(`user created ${savedUser}`).status(200)
+                
             }catch(err){
                 res.send(err)
             }
